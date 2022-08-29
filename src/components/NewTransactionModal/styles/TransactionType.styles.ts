@@ -1,4 +1,4 @@
-import styled, { css, DefaultTheme } from "styled-components"
+import styled, { css, DefaultTheme } from 'styled-components'
 import * as RadioGroup from '@radix-ui/react-radio-group'
 
 export const TransactionType = styled(RadioGroup.Root)`
@@ -17,15 +17,18 @@ interface TransactionTypeButtonProps {
 const transactionButtonVariants = (theme: DefaultTheme) => ({
   income: {
     iconColor: theme['green-300'],
-    background: theme['green-500']
+    background: theme['green-500'],
   },
   outcome: {
     iconColor: theme['red-300'],
-    background: theme['red-500']
-  }
+    background: theme['red-500'],
+  },
 })
 
-const customCssButtonByVariant = (theme: DefaultTheme, variant: TransactionButtonVariant) => {
+const customCssButtonByVariant = (
+  theme: DefaultTheme,
+  variant: TransactionButtonVariant,
+) => {
   const buttonTheme = transactionButtonVariants(theme)[variant]
 
   return css`
@@ -33,11 +36,11 @@ const customCssButtonByVariant = (theme: DefaultTheme, variant: TransactionButto
       color: ${buttonTheme.iconColor};
     }
 
-    &[data-state="unchecked"]:hover {
-      background: ${theme["gray-600"]};
+    &[data-state='unchecked']:hover {
+      background: ${theme['gray-600']};
     }
 
-    &[data-state="checked"] {
+    &[data-state='checked'] {
       background: ${buttonTheme.background};
 
       svg {
@@ -47,8 +50,10 @@ const customCssButtonByVariant = (theme: DefaultTheme, variant: TransactionButto
   `
 }
 
-export const TransactionTypeButton = styled(RadioGroup.Item)<TransactionTypeButtonProps>`
-  background: ${props => props.theme["gray-700"]};
+export const TransactionTypeButton = styled(
+  RadioGroup.Item,
+)<TransactionTypeButtonProps>`
+  background: ${(props) => props.theme['gray-700']};
   padding: 1rem;
   display: flex;
   align-items: center;
@@ -56,8 +61,8 @@ export const TransactionTypeButton = styled(RadioGroup.Item)<TransactionTypeButt
   gap: 0.5rem;
   border: 0;
   border-radius: 6px;
-  cursor: pointer;
-  color: ${props => props.theme["gray-300"]};
+  /* cursor: pointer; */
+  color: ${(props) => props.theme['gray-300']};
 
-  ${props => customCssButtonByVariant(props.theme, props.variant)}
+  ${(props) => customCssButtonByVariant(props.theme, props.variant)}
 `
